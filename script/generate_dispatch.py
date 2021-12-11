@@ -64,7 +64,7 @@ import urllib.request
 import xmltodict
 
 try: 
-	response = urllib.request.urlopen('https://raw.githubusercontent.com/KhronosGroup/Vulkan-Headers/master/registry/vk.xml')
+	response = urllib.request.urlopen('https://raw.githubusercontent.com/KhronosGroup/Vulkan-Headers/main/registry/vk.xml')
 except urllib.error.URLError as error:
 	print("Failed to download vk.xml due to error:");
 	print(error.reason)

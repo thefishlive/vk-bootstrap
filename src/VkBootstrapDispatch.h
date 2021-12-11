@@ -80,6 +80,9 @@ struct DispatchTable {
 		fp_vkMergePipelineCaches = (PFN_vkMergePipelineCaches)procAddr(device, "vkMergePipelineCaches");
 		fp_vkCreateGraphicsPipelines = (PFN_vkCreateGraphicsPipelines)procAddr(device, "vkCreateGraphicsPipelines");
 		fp_vkCreateComputePipelines = (PFN_vkCreateComputePipelines)procAddr(device, "vkCreateComputePipelines");
+#if (defined(VK_HUAWEI_subpass_shading))
+		fp_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = (PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI)procAddr(device, "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI");
+#endif
 		fp_vkDestroyPipeline = (PFN_vkDestroyPipeline)procAddr(device, "vkDestroyPipeline");
 		fp_vkCreatePipelineLayout = (PFN_vkCreatePipelineLayout)procAddr(device, "vkCreatePipelineLayout");
 		fp_vkDestroyPipelineLayout = (PFN_vkDestroyPipelineLayout)procAddr(device, "vkDestroyPipelineLayout");
@@ -121,10 +124,19 @@ struct DispatchTable {
 		fp_vkCmdBindVertexBuffers = (PFN_vkCmdBindVertexBuffers)procAddr(device, "vkCmdBindVertexBuffers");
 		fp_vkCmdDraw = (PFN_vkCmdDraw)procAddr(device, "vkCmdDraw");
 		fp_vkCmdDrawIndexed = (PFN_vkCmdDrawIndexed)procAddr(device, "vkCmdDrawIndexed");
+#if (defined(VK_EXT_multi_draw))
+		fp_vkCmdDrawMultiEXT = (PFN_vkCmdDrawMultiEXT)procAddr(device, "vkCmdDrawMultiEXT");
+#endif
+#if (defined(VK_EXT_multi_draw))
+		fp_vkCmdDrawMultiIndexedEXT = (PFN_vkCmdDrawMultiIndexedEXT)procAddr(device, "vkCmdDrawMultiIndexedEXT");
+#endif
 		fp_vkCmdDrawIndirect = (PFN_vkCmdDrawIndirect)procAddr(device, "vkCmdDrawIndirect");
 		fp_vkCmdDrawIndexedIndirect = (PFN_vkCmdDrawIndexedIndirect)procAddr(device, "vkCmdDrawIndexedIndirect");
 		fp_vkCmdDispatch = (PFN_vkCmdDispatch)procAddr(device, "vkCmdDispatch");
 		fp_vkCmdDispatchIndirect = (PFN_vkCmdDispatchIndirect)procAddr(device, "vkCmdDispatchIndirect");
+#if (defined(VK_HUAWEI_subpass_shading))
+		fp_vkCmdSubpassShadingHUAWEI = (PFN_vkCmdSubpassShadingHUAWEI)procAddr(device, "vkCmdSubpassShadingHUAWEI");
+#endif
 		fp_vkCmdCopyBuffer = (PFN_vkCmdCopyBuffer)procAddr(device, "vkCmdCopyBuffer");
 		fp_vkCmdCopyImage = (PFN_vkCmdCopyImage)procAddr(device, "vkCmdCopyImage");
 		fp_vkCmdBlitImage = (PFN_vkCmdBlitImage)procAddr(device, "vkCmdBlitImage");
@@ -234,6 +246,9 @@ struct DispatchTable {
 #if (defined(VK_FUCHSIA_external_memory))
 		fp_vkGetMemoryZirconHandlePropertiesFUCHSIA = (PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA)procAddr(device, "vkGetMemoryZirconHandlePropertiesFUCHSIA");
 #endif
+#if (defined(VK_NV_external_memory_rdma))
+		fp_vkGetMemoryRemoteAddressNV = (PFN_vkGetMemoryRemoteAddressNV)procAddr(device, "vkGetMemoryRemoteAddressNV");
+#endif
 #if (defined(VK_KHR_external_semaphore_win32))
 		fp_vkGetSemaphoreWin32HandleKHR = (PFN_vkGetSemaphoreWin32HandleKHR)procAddr(device, "vkGetSemaphoreWin32HandleKHR");
 #endif
@@ -341,6 +356,15 @@ struct DispatchTable {
 #endif
 #if (defined(VK_VERSION_1_1)) || (defined(VK_KHR_get_memory_requirements2))
 		fp_vkGetImageSparseMemoryRequirements2 = (PFN_vkGetImageSparseMemoryRequirements2)procAddr(device, "vkGetImageSparseMemoryRequirements2");
+#endif
+#if (defined(VK_KHR_maintenance4))
+		fp_vkGetDeviceBufferMemoryRequirementsKHR = (PFN_vkGetDeviceBufferMemoryRequirementsKHR)procAddr(device, "vkGetDeviceBufferMemoryRequirementsKHR");
+#endif
+#if (defined(VK_KHR_maintenance4))
+		fp_vkGetDeviceImageMemoryRequirementsKHR = (PFN_vkGetDeviceImageMemoryRequirementsKHR)procAddr(device, "vkGetDeviceImageMemoryRequirementsKHR");
+#endif
+#if (defined(VK_KHR_maintenance4))
+		fp_vkGetDeviceImageSparseMemoryRequirementsKHR = (PFN_vkGetDeviceImageSparseMemoryRequirementsKHR)procAddr(device, "vkGetDeviceImageSparseMemoryRequirementsKHR");
 #endif
 #if (defined(VK_VERSION_1_1)) || (defined(VK_KHR_sampler_ycbcr_conversion))
 		fp_vkCreateSamplerYcbcrConversion = (PFN_vkCreateSamplerYcbcrConversion)procAddr(device, "vkCreateSamplerYcbcrConversion");
@@ -500,6 +524,9 @@ struct DispatchTable {
 #endif
 #if (defined(VK_NV_ray_tracing))
 		fp_vkCreateAccelerationStructureNV = (PFN_vkCreateAccelerationStructureNV)procAddr(device, "vkCreateAccelerationStructureNV");
+#endif
+#if (defined(VK_HUAWEI_invocation_mask))
+		fp_vkCmdBindInvocationMaskHUAWEI = (PFN_vkCmdBindInvocationMaskHUAWEI)procAddr(device, "vkCmdBindInvocationMaskHUAWEI");
 #endif
 #if (defined(VK_KHR_acceleration_structure))
 		fp_vkDestroyAccelerationStructureKHR = (PFN_vkDestroyAccelerationStructureKHR)procAddr(device, "vkDestroyAccelerationStructureKHR");
@@ -852,6 +879,33 @@ struct DispatchTable {
 #if (defined(VK_NVX_binary_import))
 		fp_vkCmdCuLaunchKernelNVX = (PFN_vkCmdCuLaunchKernelNVX)procAddr(device, "vkCmdCuLaunchKernelNVX");
 #endif
+#if (defined(VK_EXT_pageable_device_local_memory))
+		fp_vkSetDeviceMemoryPriorityEXT = (PFN_vkSetDeviceMemoryPriorityEXT)procAddr(device, "vkSetDeviceMemoryPriorityEXT");
+#endif
+#if (defined(VK_KHR_present_wait))
+		fp_vkWaitForPresentKHR = (PFN_vkWaitForPresentKHR)procAddr(device, "vkWaitForPresentKHR");
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+		fp_vkCreateBufferCollectionFUCHSIA = (PFN_vkCreateBufferCollectionFUCHSIA)procAddr(device, "vkCreateBufferCollectionFUCHSIA");
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+		fp_vkSetBufferCollectionBufferConstraintsFUCHSIA = (PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA)procAddr(device, "vkSetBufferCollectionBufferConstraintsFUCHSIA");
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+		fp_vkSetBufferCollectionImageConstraintsFUCHSIA = (PFN_vkSetBufferCollectionImageConstraintsFUCHSIA)procAddr(device, "vkSetBufferCollectionImageConstraintsFUCHSIA");
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+		fp_vkDestroyBufferCollectionFUCHSIA = (PFN_vkDestroyBufferCollectionFUCHSIA)procAddr(device, "vkDestroyBufferCollectionFUCHSIA");
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+		fp_vkGetBufferCollectionPropertiesFUCHSIA = (PFN_vkGetBufferCollectionPropertiesFUCHSIA)procAddr(device, "vkGetBufferCollectionPropertiesFUCHSIA");
+#endif
+#if (defined(VK_KHR_dynamic_rendering))
+		fp_vkCmdBeginRenderingKHR = (PFN_vkCmdBeginRenderingKHR)procAddr(device, "vkCmdBeginRenderingKHR");
+#endif
+#if (defined(VK_KHR_dynamic_rendering))
+		fp_vkCmdEndRenderingKHR = (PFN_vkCmdEndRenderingKHR)procAddr(device, "vkCmdEndRenderingKHR");
+#endif
 #if (defined(VK_VERSION_1_2)) || (defined(VK_EXT_host_query_reset))
 		fp_vkResetQueryPoolEXT = (PFN_vkResetQueryPoolEXT)procAddr(device, "vkResetQueryPoolEXT");
 #endif
@@ -1092,6 +1146,11 @@ struct DispatchTable {
 	VkResult createComputePipelines(VkPipelineCache pipelineCache, uint32_t createInfoCount, const VkComputePipelineCreateInfo* pCreateInfos, const VkAllocationCallbacks* pAllocator, VkPipeline* pPipelines) const noexcept {
 		return fp_vkCreateComputePipelines(device, pipelineCache, createInfoCount, pCreateInfos, pAllocator, pPipelines);
 	}
+#if (defined(VK_HUAWEI_subpass_shading))
+	VkResult getDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(VkRenderPass renderpass, VkExtent2D* pMaxWorkgroupSize) const noexcept {
+		return fp_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(device, renderpass, pMaxWorkgroupSize);
+	}
+#endif
 	void destroyPipeline(VkPipeline pipeline, const VkAllocationCallbacks* pAllocator) const noexcept {
 		fp_vkDestroyPipeline(device, pipeline, pAllocator);
 	}
@@ -1215,6 +1274,16 @@ struct DispatchTable {
 	void cmdDrawIndexed(VkCommandBuffer commandBuffer, uint32_t indexCount, uint32_t instanceCount, uint32_t firstIndex, int32_t vertexOffset, uint32_t firstInstance) const noexcept {
 		fp_vkCmdDrawIndexed(commandBuffer, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
 	}
+#if (defined(VK_EXT_multi_draw))
+	void cmdDrawMultiEXT(VkCommandBuffer commandBuffer, uint32_t drawCount, const VkMultiDrawInfoEXT* pVertexInfo, uint32_t instanceCount, uint32_t firstInstance, uint32_t stride) const noexcept {
+		fp_vkCmdDrawMultiEXT(commandBuffer, drawCount, pVertexInfo, instanceCount, firstInstance, stride);
+	}
+#endif
+#if (defined(VK_EXT_multi_draw))
+	void cmdDrawMultiIndexedEXT(VkCommandBuffer commandBuffer, uint32_t drawCount, const VkMultiDrawIndexedInfoEXT* pIndexInfo, uint32_t instanceCount, uint32_t firstInstance, uint32_t stride, const int32_t* pVertexOffset) const noexcept {
+		fp_vkCmdDrawMultiIndexedEXT(commandBuffer, drawCount, pIndexInfo, instanceCount, firstInstance, stride, pVertexOffset);
+	}
+#endif
 	void cmdDrawIndirect(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, uint32_t drawCount, uint32_t stride) const noexcept {
 		fp_vkCmdDrawIndirect(commandBuffer, buffer, offset, drawCount, stride);
 	}
@@ -1227,6 +1296,11 @@ struct DispatchTable {
 	void cmdDispatchIndirect(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset) const noexcept {
 		fp_vkCmdDispatchIndirect(commandBuffer, buffer, offset);
 	}
+#if (defined(VK_HUAWEI_subpass_shading))
+	void cmdSubpassShadingHUAWEI(VkCommandBuffer commandBuffer) const noexcept {
+		fp_vkCmdSubpassShadingHUAWEI(commandBuffer);
+	}
+#endif
 	void cmdCopyBuffer(VkCommandBuffer commandBuffer, VkBuffer srcBuffer, VkBuffer dstBuffer, uint32_t regionCount, const VkBufferCopy* pRegions) const noexcept {
 		fp_vkCmdCopyBuffer(commandBuffer, srcBuffer, dstBuffer, regionCount, pRegions);
 	}
@@ -1442,6 +1516,11 @@ struct DispatchTable {
 		return fp_vkGetMemoryZirconHandlePropertiesFUCHSIA(device, handleType, zirconHandle, pMemoryZirconHandleProperties);
 	}
 #endif
+#if (defined(VK_NV_external_memory_rdma))
+	VkResult getMemoryRemoteAddressNV(const VkMemoryGetRemoteAddressInfoNV* pMemoryGetRemoteAddressInfo, VkRemoteAddressNV* pAddress) const noexcept {
+		return fp_vkGetMemoryRemoteAddressNV(device, pMemoryGetRemoteAddressInfo, pAddress);
+	}
+#endif
 #if (defined(VK_KHR_external_semaphore_win32))
 	VkResult getSemaphoreWin32HandleKHR(const VkSemaphoreGetWin32HandleInfoKHR* pGetWin32HandleInfo, HANDLE* pHandle) const noexcept {
 		return fp_vkGetSemaphoreWin32HandleKHR(device, pGetWin32HandleInfo, pHandle);
@@ -1620,6 +1699,21 @@ struct DispatchTable {
 #if (defined(VK_VERSION_1_1)) || (defined(VK_KHR_get_memory_requirements2))
 	void getImageSparseMemoryRequirements2(const VkImageSparseMemoryRequirementsInfo2* pInfo, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements2* pSparseMemoryRequirements) const noexcept {
 		fp_vkGetImageSparseMemoryRequirements2(device, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
+	}
+#endif
+#if (defined(VK_KHR_maintenance4))
+	void getDeviceBufferMemoryRequirementsKHR(const VkDeviceBufferMemoryRequirementsKHR* pInfo, VkMemoryRequirements2* pMemoryRequirements) const noexcept {
+		fp_vkGetDeviceBufferMemoryRequirementsKHR(device, pInfo, pMemoryRequirements);
+	}
+#endif
+#if (defined(VK_KHR_maintenance4))
+	void getDeviceImageMemoryRequirementsKHR(const VkDeviceImageMemoryRequirementsKHR* pInfo, VkMemoryRequirements2* pMemoryRequirements) const noexcept {
+		fp_vkGetDeviceImageMemoryRequirementsKHR(device, pInfo, pMemoryRequirements);
+	}
+#endif
+#if (defined(VK_KHR_maintenance4))
+	void getDeviceImageSparseMemoryRequirementsKHR(const VkDeviceImageMemoryRequirementsKHR* pInfo, uint32_t* pSparseMemoryRequirementCount, VkSparseImageMemoryRequirements2* pSparseMemoryRequirements) const noexcept {
+		fp_vkGetDeviceImageSparseMemoryRequirementsKHR(device, pInfo, pSparseMemoryRequirementCount, pSparseMemoryRequirements);
 	}
 #endif
 #if (defined(VK_VERSION_1_1)) || (defined(VK_KHR_sampler_ycbcr_conversion))
@@ -1885,6 +1979,11 @@ struct DispatchTable {
 #if (defined(VK_NV_ray_tracing))
 	VkResult createAccelerationStructureNV(const VkAccelerationStructureCreateInfoNV* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkAccelerationStructureNV* pAccelerationStructure) const noexcept {
 		return fp_vkCreateAccelerationStructureNV(device, pCreateInfo, pAllocator, pAccelerationStructure);
+	}
+#endif
+#if (defined(VK_HUAWEI_invocation_mask))
+	void cmdBindInvocationMaskHUAWEI(VkCommandBuffer commandBuffer, VkImageView imageView, VkImageLayout imageLayout) const noexcept {
+		fp_vkCmdBindInvocationMaskHUAWEI(commandBuffer, imageView, imageLayout);
 	}
 #endif
 #if (defined(VK_KHR_acceleration_structure))
@@ -2472,6 +2571,51 @@ struct DispatchTable {
 		fp_vkCmdCuLaunchKernelNVX(commandBuffer, pLaunchInfo);
 	}
 #endif
+#if (defined(VK_EXT_pageable_device_local_memory))
+	void setDeviceMemoryPriorityEXT(VkDeviceMemory memory, float priority) const noexcept {
+		fp_vkSetDeviceMemoryPriorityEXT(device, memory, priority);
+	}
+#endif
+#if (defined(VK_KHR_present_wait))
+	VkResult waitForPresentKHR(VkSwapchainKHR swapchain, uint64_t presentId, uint64_t timeout) const noexcept {
+		return fp_vkWaitForPresentKHR(device, swapchain, presentId, timeout);
+	}
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	VkResult createBufferCollectionFUCHSIA(const VkBufferCollectionCreateInfoFUCHSIA* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkBufferCollectionFUCHSIA* pCollection) const noexcept {
+		return fp_vkCreateBufferCollectionFUCHSIA(device, pCreateInfo, pAllocator, pCollection);
+	}
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	VkResult setBufferCollectionBufferConstraintsFUCHSIA(VkBufferCollectionFUCHSIA collection, const VkBufferConstraintsInfoFUCHSIA* pBufferConstraintsInfo) const noexcept {
+		return fp_vkSetBufferCollectionBufferConstraintsFUCHSIA(device, collection, pBufferConstraintsInfo);
+	}
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	VkResult setBufferCollectionImageConstraintsFUCHSIA(VkBufferCollectionFUCHSIA collection, const VkImageConstraintsInfoFUCHSIA* pImageConstraintsInfo) const noexcept {
+		return fp_vkSetBufferCollectionImageConstraintsFUCHSIA(device, collection, pImageConstraintsInfo);
+	}
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	void destroyBufferCollectionFUCHSIA(VkBufferCollectionFUCHSIA collection, const VkAllocationCallbacks* pAllocator) const noexcept {
+		fp_vkDestroyBufferCollectionFUCHSIA(device, collection, pAllocator);
+	}
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	VkResult getBufferCollectionPropertiesFUCHSIA(VkBufferCollectionFUCHSIA collection, VkBufferCollectionPropertiesFUCHSIA* pProperties) const noexcept {
+		return fp_vkGetBufferCollectionPropertiesFUCHSIA(device, collection, pProperties);
+	}
+#endif
+#if (defined(VK_KHR_dynamic_rendering))
+	void cmdBeginRenderingKHR(VkCommandBuffer commandBuffer, const VkRenderingInfoKHR* pRenderingInfo) const noexcept {
+		fp_vkCmdBeginRenderingKHR(commandBuffer, pRenderingInfo);
+	}
+#endif
+#if (defined(VK_KHR_dynamic_rendering))
+	void cmdEndRenderingKHR(VkCommandBuffer commandBuffer) const noexcept {
+		fp_vkCmdEndRenderingKHR(commandBuffer);
+	}
+#endif
 #if (defined(VK_VERSION_1_2)) || (defined(VK_EXT_host_query_reset))
 	void resetQueryPoolEXT(VkQueryPool queryPool, uint32_t firstQuery, uint32_t queryCount) const noexcept {
 		fp_vkResetQueryPoolEXT(device, queryPool, firstQuery, queryCount);
@@ -2669,6 +2813,9 @@ struct DispatchTable {
 	PFN_vkMergePipelineCaches fp_vkMergePipelineCaches = nullptr;
 	PFN_vkCreateGraphicsPipelines fp_vkCreateGraphicsPipelines = nullptr;
 	PFN_vkCreateComputePipelines fp_vkCreateComputePipelines = nullptr;
+#if (defined(VK_HUAWEI_subpass_shading))
+	PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI fp_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = nullptr;
+#endif
 	PFN_vkDestroyPipeline fp_vkDestroyPipeline = nullptr;
 	PFN_vkCreatePipelineLayout fp_vkCreatePipelineLayout = nullptr;
 	PFN_vkDestroyPipelineLayout fp_vkDestroyPipelineLayout = nullptr;
@@ -2710,10 +2857,19 @@ struct DispatchTable {
 	PFN_vkCmdBindVertexBuffers fp_vkCmdBindVertexBuffers = nullptr;
 	PFN_vkCmdDraw fp_vkCmdDraw = nullptr;
 	PFN_vkCmdDrawIndexed fp_vkCmdDrawIndexed = nullptr;
+#if (defined(VK_EXT_multi_draw))
+	PFN_vkCmdDrawMultiEXT fp_vkCmdDrawMultiEXT = nullptr;
+#endif
+#if (defined(VK_EXT_multi_draw))
+	PFN_vkCmdDrawMultiIndexedEXT fp_vkCmdDrawMultiIndexedEXT = nullptr;
+#endif
 	PFN_vkCmdDrawIndirect fp_vkCmdDrawIndirect = nullptr;
 	PFN_vkCmdDrawIndexedIndirect fp_vkCmdDrawIndexedIndirect = nullptr;
 	PFN_vkCmdDispatch fp_vkCmdDispatch = nullptr;
 	PFN_vkCmdDispatchIndirect fp_vkCmdDispatchIndirect = nullptr;
+#if (defined(VK_HUAWEI_subpass_shading))
+	PFN_vkCmdSubpassShadingHUAWEI fp_vkCmdSubpassShadingHUAWEI = nullptr;
+#endif
 	PFN_vkCmdCopyBuffer fp_vkCmdCopyBuffer = nullptr;
 	PFN_vkCmdCopyImage fp_vkCmdCopyImage = nullptr;
 	PFN_vkCmdBlitImage fp_vkCmdBlitImage = nullptr;
@@ -2823,6 +2979,9 @@ struct DispatchTable {
 #if (defined(VK_FUCHSIA_external_memory))
 	PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA fp_vkGetMemoryZirconHandlePropertiesFUCHSIA = nullptr;
 #endif
+#if (defined(VK_NV_external_memory_rdma))
+	PFN_vkGetMemoryRemoteAddressNV fp_vkGetMemoryRemoteAddressNV = nullptr;
+#endif
 #if (defined(VK_KHR_external_semaphore_win32))
 	PFN_vkGetSemaphoreWin32HandleKHR fp_vkGetSemaphoreWin32HandleKHR = nullptr;
 #endif
@@ -2930,6 +3089,15 @@ struct DispatchTable {
 #endif
 #if (defined(VK_VERSION_1_1)) || (defined(VK_KHR_get_memory_requirements2))
 	PFN_vkGetImageSparseMemoryRequirements2 fp_vkGetImageSparseMemoryRequirements2 = nullptr;
+#endif
+#if (defined(VK_KHR_maintenance4))
+	PFN_vkGetDeviceBufferMemoryRequirementsKHR fp_vkGetDeviceBufferMemoryRequirementsKHR = nullptr;
+#endif
+#if (defined(VK_KHR_maintenance4))
+	PFN_vkGetDeviceImageMemoryRequirementsKHR fp_vkGetDeviceImageMemoryRequirementsKHR = nullptr;
+#endif
+#if (defined(VK_KHR_maintenance4))
+	PFN_vkGetDeviceImageSparseMemoryRequirementsKHR fp_vkGetDeviceImageSparseMemoryRequirementsKHR = nullptr;
 #endif
 #if (defined(VK_VERSION_1_1)) || (defined(VK_KHR_sampler_ycbcr_conversion))
 	PFN_vkCreateSamplerYcbcrConversion fp_vkCreateSamplerYcbcrConversion = nullptr;
@@ -3089,6 +3257,9 @@ struct DispatchTable {
 #endif
 #if (defined(VK_NV_ray_tracing))
 	PFN_vkCreateAccelerationStructureNV fp_vkCreateAccelerationStructureNV = nullptr;
+#endif
+#if (defined(VK_HUAWEI_invocation_mask))
+	PFN_vkCmdBindInvocationMaskHUAWEI fp_vkCmdBindInvocationMaskHUAWEI = nullptr;
 #endif
 #if (defined(VK_KHR_acceleration_structure))
 	PFN_vkDestroyAccelerationStructureKHR fp_vkDestroyAccelerationStructureKHR = nullptr;
@@ -3440,6 +3611,33 @@ struct DispatchTable {
 #endif
 #if (defined(VK_NVX_binary_import))
 	PFN_vkCmdCuLaunchKernelNVX fp_vkCmdCuLaunchKernelNVX = nullptr;
+#endif
+#if (defined(VK_EXT_pageable_device_local_memory))
+	PFN_vkSetDeviceMemoryPriorityEXT fp_vkSetDeviceMemoryPriorityEXT = nullptr;
+#endif
+#if (defined(VK_KHR_present_wait))
+	PFN_vkWaitForPresentKHR fp_vkWaitForPresentKHR = nullptr;
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	PFN_vkCreateBufferCollectionFUCHSIA fp_vkCreateBufferCollectionFUCHSIA = nullptr;
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA fp_vkSetBufferCollectionBufferConstraintsFUCHSIA = nullptr;
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	PFN_vkSetBufferCollectionImageConstraintsFUCHSIA fp_vkSetBufferCollectionImageConstraintsFUCHSIA = nullptr;
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	PFN_vkDestroyBufferCollectionFUCHSIA fp_vkDestroyBufferCollectionFUCHSIA = nullptr;
+#endif
+#if (defined(VK_FUCHSIA_buffer_collection))
+	PFN_vkGetBufferCollectionPropertiesFUCHSIA fp_vkGetBufferCollectionPropertiesFUCHSIA = nullptr;
+#endif
+#if (defined(VK_KHR_dynamic_rendering))
+	PFN_vkCmdBeginRenderingKHR fp_vkCmdBeginRenderingKHR = nullptr;
+#endif
+#if (defined(VK_KHR_dynamic_rendering))
+	PFN_vkCmdEndRenderingKHR fp_vkCmdEndRenderingKHR = nullptr;
 #endif
 #if (defined(VK_VERSION_1_2)) || (defined(VK_EXT_host_query_reset))
 	PFN_vkResetQueryPoolEXT fp_vkResetQueryPoolEXT = nullptr;
